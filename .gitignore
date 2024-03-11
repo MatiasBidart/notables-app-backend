@@ -1,0 +1,4 @@
+node_modules/
+.env
+
+users, models, utils y el archivo app.js y config.js
