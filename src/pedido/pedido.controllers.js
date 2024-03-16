@@ -39,8 +39,8 @@ const getPedidoById = async (id) => {
     })
     return data
 }
-const getPedidoByLocal = async (local) => {
-    const data =await Pedido.findOne({where: {local : local}})
+const getPedidoByLocal = async (localId) => {
+    const data =await Pedido.findOne({where: {localId}})
     return data
 }
 const createPedido = async (data) => {

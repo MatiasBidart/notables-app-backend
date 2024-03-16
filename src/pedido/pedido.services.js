@@ -30,8 +30,8 @@ const getPedidoById = (req,res) =>{
     .catch(err=>{res.status(404).json({message:err.message})})
 }
 const getPedidoByLocal = (req,res) =>{
-    const id = req.params.id
-    pedidoControllers.getPedidoByLocal(pedidoLocal)
+    const localId = req.body.localId
+    pedidoControllers.getPedidoByLocal(localId)
     .then(data=>{res.status(200).json(data)})
     .catch(err=>{res.status(404).json({message:err.message})})
 }
