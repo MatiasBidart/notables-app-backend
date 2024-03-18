@@ -29,6 +29,20 @@ const postCategory = (req, res) => {
         }})
     }
 }
+const patchCategory = (req,res) => {
+    const id = req.params.id
+    const {name, description} = req.body;
+    if (name || description) {
+        categoryControllers.patchCategory(id, name, description)
+        .then(data => res.status(200).json({message: 'Edited Succesfully', data}))
+        .catch(err => res.status(400).json({message: err.message}))
+    } else {
+        res.status(400).json({message: 'You have to post the new data to update', fields: {
+            name: 'category_name',
+            description: 'description'
+        }})
+    }
+}
 
 const deleteCategory = (req, res) => {
     const id = req.params.id
@@ -40,5 +54,6 @@ module.exports = {
     getAllCategories,
     getCategoryById,
     postCategory,
+    patchCategory,
     deleteCategory
 }

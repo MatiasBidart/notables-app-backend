@@ -31,9 +31,15 @@ const getPedidoById = (req,res) =>{
 }
 const getPedidoByLocal = (req,res) =>{
     const localId = req.body.localId
-    pedidoControllers.getPedidoByLocal(localId)
-    .then(data=>{res.status(200).json(data)})
-    .catch(err=>{res.status(404).json({message:err.message})})
+    const date = req.body.date
+    if(localId && date){
+        pedidoControllers.getPedidoByLocal(localId, date)
+        .then(data=>{res.status(200).json(data)})
+        .catch(err=>{res.status(404).json({message:err.message})})
+    } else {
+        res.status(400).json({message:'Error: Missing Data',
+        description: 'Is mandatory to have the following data:{localId, date}'})
+    }
 }
 const patchPedido =(req,res)=>{
     const id = req.params.id

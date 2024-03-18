@@ -20,7 +20,9 @@ const createRegister = (req, res) => {
         fields:
         {
             quantityAsked: 'number',
-            quantityDelivered: 'number'
+            quantityDelivered: 'number',
+            productId: 'uuid',
+            pedidoId: 'uuid'
         }})
     }
 }

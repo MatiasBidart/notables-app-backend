@@ -13,7 +13,8 @@ const createLocal = async (data) => {
     const newLocal = await Local.create(
         {
             id: uuid.v4(),
-            name: data.name
+            name: data.name,
+            img: data.img
         }
         )
     return newLocal

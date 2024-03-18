@@ -10,6 +10,9 @@ const Local = db.define('local', {
     name:{
         type: DataTypes.STRING,
         allowNull: false
+    },
+    img:{
+        type: DataTypes.TEXT
     }
 },
 {

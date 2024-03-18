@@ -33,12 +33,13 @@ const deleteLocal = (req, res) => {
     .catch(err => {res.status(404).json({message: err.message})})
 }
 const createLocal = (req, res) => {
-    const {id, name} = req.body
-    if({id, name}) 
+    const {id, name, img} = req.body
+    if({id, name, img}) 
     {
         localControllers.createLocal({
             id,
-            name
+            name,
+            img
         })
         .then(data => {res.status(201).json(data)})
         .catch(err=>{res.status(400).json(err.message)})
@@ -46,7 +47,8 @@ const createLocal = (req, res) => {
         res.status(400).json({message: 'All fields must be completed',
         fields:
         {
-            name: "Ejemplo: CAO"
+            name: "Ejemplo: CAO",
+            img: 'www.url.com'
         }})
     }
 }

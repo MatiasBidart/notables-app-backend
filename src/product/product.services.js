@@ -12,7 +12,7 @@ const getProductById = (req,res) =>{
     .catch(err=>{res.status(404).json({message:err.message})})
 }
 const getProductByName = (req,res) =>{
-    const id=req.params.id
+    const productName=req.params.productName
     productControllers.getProductByName(productName)
     .then(data=>{res.status(200).json(data)})
     .catch(err=>{res.status(404).json({message:err.message})})
