@@ -7,9 +7,8 @@ const createRegister = async (data) => {
             id: uuid.v4(),
             listDate: new Date (),
             quantityAsked: data.quantityAsked,
-            quantityDelivered: data.quantityDelivered,
             productId: data.productId,
-            pedidoId: data.pedidoId
+            pedidoId: data.pedidoId,
         }
         )
     return newRegister

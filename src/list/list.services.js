@@ -2,12 +2,10 @@ const listControllers = require('../list/list.controller')
 
 
 const createRegister = (req, res) => {
-    const { id, listDate, quantityAsked, quantityDelivered, productId, pedidoId}= req.body;
-    if(id, listDate, quantityAsked && quantityDelivered && productId, pedidoId) 
+    const { quantityAsked, quantityDelivered, productId, pedidoId}= req.body;
+    if(quantityDelivered, quantityAsked && productId && pedidoId) 
     {
         listControllers.createRegister({
-            id,
-            listDate,
             quantityAsked,       
             quantityDelivered,
             productId,
@@ -16,7 +14,7 @@ const createRegister = (req, res) => {
         .then(data => {res.status(201).json(data)})
         .catch(err=>{res.status(400).json(err.message)})
     } else {
-        res.status(400).json({message: 'All fields must be completed',
+        res.status(400).json({message: 'Some of this fields is missed',
         fields:
         {
             quantityAsked: 'number',
@@ -39,13 +37,14 @@ const getRegisters = (req, res) => {
 }
 const patchRegisters =(req,res)=>{
     const id = req.params.id
-    const {listDate, quantityAsked, quantityDelivered, productId, pedidoId} = req.body
+    const {listDate, quantityAsked, quantityDelivered, productId, pedidoId, isDelivered} = req.body
     listControllers.patchRegister(id, {
         listDate,
         quantityAsked,
         quantityDelivered,
         productId,
-        pedidoId
+        pedidoId,
+        isDelivered
     })
     .then(data =>{
         if(data[0]){

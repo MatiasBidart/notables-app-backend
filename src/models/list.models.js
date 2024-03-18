@@ -20,6 +20,7 @@ const List = db.define('list',{
     },
     quantityDelivered: {
         type: DataTypes.INTEGER,
+        defaultValue: 0,
         field: 'quantity_delivered'
     },
     productId: {
@@ -39,6 +40,12 @@ const List = db.define('list',{
             key: 'id',
             model: Pedido
         }
+    },
+    isDelivered: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
+        field:'is_delivered'
     }
 })
 

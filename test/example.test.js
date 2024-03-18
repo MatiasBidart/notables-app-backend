@@ -1,5 +1,6 @@
 const {it, describe}= require('mocha');
-const {assert}= require('chai')
+// const { assert } = require('chai'); 
+import('chai')
 
 const sumar = (a,b) => a+b
 describe('Test de la función sumar', () => {

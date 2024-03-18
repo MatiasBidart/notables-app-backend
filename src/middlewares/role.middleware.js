@@ -6,4 +6,4 @@ const adminValidate = (req, res, next) => {
         res.status(401).json({message: 'Access Denied!'})
     }
 }
-module.exports = {adminValidate}
+module.exports = adminValidate

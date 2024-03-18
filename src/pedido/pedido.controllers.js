@@ -48,9 +48,7 @@ const createPedido = async (data) => {
             id: uuid.v4(),
             localId: data.localId,
             date: new Date(),
-            isCompleted: data.isCompleted,
             startedAt: data.startedAt,
-            isDeveloped: data.isDeveloped,
         }
     const result = await Pedido.create(newPedido)
     return result

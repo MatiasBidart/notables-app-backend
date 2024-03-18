@@ -14,20 +14,12 @@ const patchUser =(req,res)=>{
     const id=req.params.id
     const {
         firstName,
-        lastName,
-        phone,
-        birhtday,
-        gender,
-        country
+        lastName
     } = req.body
 
     userControllers.updateUser(id, {
         firstName,
-        lastName,
-        phone,
-        birthday,
-        gender,
-        country
+        lastName
     })
     .then(data =>{
         if(data[0]){
@@ -56,22 +48,14 @@ const registerUser = (req, res) => {
         lastName,
         email,
         password,
-        phone,
-        birthday,
-        gender,
-        country
     }= req.body;
 
-    if(firstName &&lastName &&email &&password &&birthday) {
+    if(firstName &&lastName && email && password) {
         userControllers.createUser({
             firstName,
             lastName,
             email,
-            password,
-            phone,
-            birthday,
-            gender,
-            country
+            password
         })
     .then(data => {res.status(201).json(data)})
     .catch(err=>{res.status(400).json(err.message)})
@@ -83,8 +67,7 @@ const registerUser = (req, res) => {
             lastName: 'string',
             email: 'example@expample.com',
             password: 'string',
-            phone: '+54 11 2373 3304',
-            birthday: 'YYYY/MM/DD'}
+            }
         })
     }
 }
@@ -98,20 +81,12 @@ const patchMyUser = (req,res)=> {
     const id = req.user.id;
     const {
         firstName,
-        lastName,
-        phone,
-        birthday,
-        gender,
-        country
+        lastName
     } = req.body;
 
     userControllers.updateUser(id, {
         firstName,
-        lastName,
-        phone,
-        birthday,
-        gender,
-        country
+        lastName
     })
     .then(data => {
         res.status(200).json({message: 'Your user was edited succesfully!', data: data})
@@ -120,10 +95,11 @@ const patchMyUser = (req,res)=> {
 }
 const deleteMyUser =   (req, res)=> {const id = req.user.id
     userControllers.updateUser(id, {
-        status: 'inactive'
+        userStatus: 'disabled'
     })
-    .then (()=> {res.status(200).json({message: 'Your user was deleted succesfully!'})})
-    .catch(err=> {res.status(400).json({message: err.message})})}
+    .then (()=> {res.status(200).json({message: 'Your user was disabled succesfully! You have 30 days to reactive or will be deleted definitely'})})
+    .catch(err=> {res.status(400).json({message: err.message})})
+}
 
 module.exports= {
     getAllUsers,

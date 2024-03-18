@@ -11,8 +11,8 @@ router.route('/me')
     .patch(passport.authenticate('jwt', {session: false}),userServices.patchMyUser)
     .delete(passport.authenticate('jwt', {session: false}, adminValidate, userServices.deleteMyUser))
 router.route('/:id')
-    .get(userServices.getUserById)
-    .patch(userServices.patchUser)
-    .delete(userServices.deleteUser) 
+    .get(adminValidate, userServices.getUserById)
+    .patch(adminValidate, userServices.patchUser)
+    .delete(adminValidate, userServices.deleteUser) 
 
 module.exports = router
