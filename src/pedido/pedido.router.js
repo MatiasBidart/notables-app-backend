@@ -3,6 +3,7 @@ const pedidoServices = require('./pedido.services')
 
 router.route('/')
     .get(pedidoServices.getAllPedidos)
+    .post(pedidoServices.getPedidoByLocal)
     .post(pedidoServices.createPedido)
     router.route('/local')
     .post(pedidoServices.getPedidoByLocal)
