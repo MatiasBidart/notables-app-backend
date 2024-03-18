@@ -40,9 +40,11 @@ const deleteProduct = (req, res) => {
     userControllers.deleteProduct(id)
     .then(data => {
         // [porque al eliminar un registro nos devuelve número -> if (data !== 0 || data)]
-        if(data)  {res.status(204).json()} else {
-            res.status(404).json({message:'InvalidID'})
-        }
+        // if(data)  {
+            res.status(204).json()
+        // }else {
+        //     res.status(404).json({message:'InvalidID'})
+        // }
     })
     .catch(err => {res.status(404).json({message: err.message})})
 }
