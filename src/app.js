@@ -11,6 +11,7 @@ const listRouter = require('./list/list.router');
 const categoriesProductsRouter = require('./categoriesProducts/categoriesProducts.router');
 const initModels = require('./models/initModels');
 
+
 const app = express();
 app.use(express.json());
 app.use(cors());
