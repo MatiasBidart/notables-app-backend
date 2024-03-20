@@ -40,29 +40,8 @@ const getPedidoById = async (id) => {
     return data
 }
 const getPedidoByLocal = async (localId, date) => {
-    const data =await Pedido.findOne({
-        where: {localId, date},
-        attributes: {exclude: ['createdAt', 'updatedAt']},
-        include: [
-            {
-                model: List,
-                as: 'lists',
-                where: {pedidoId: id},
-                attributes: [
-                    'quantityAsked',
-                    'quantityDelivered'
-                ],
-                include: [{
-                    model: Product,
-                    attributes: [
-                        "name",
-                        "stock",
-                        "img"
-                    ]
-                }]
-            },
-        ]
-    })
+    const data =await Pedido.findOne({where: {localId, date}})
+    
     return data
 }
 const createPedido = async (data) => {

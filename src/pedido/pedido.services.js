@@ -32,6 +32,7 @@ const getPedidoById = (req,res) =>{
 const getPedidoByLocal = (req,res) =>{
     const localId = req.body.localId
     const date = req.body.date
+    
     if(localId && date){
         pedidoControllers.getPedidoByLocal(localId, date)
         .then(data=>{res.status(200).json(data)})
