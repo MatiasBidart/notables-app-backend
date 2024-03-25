@@ -29,6 +29,7 @@ const getPedidoById = async (id) => {
                 include: [{
                     model: Product,
                     attributes: [
+                        "id",
                         "name",
                         "stock",
                         "img"
@@ -39,8 +40,10 @@ const getPedidoById = async (id) => {
     })
     return data
 }
-const getPedidoByLocal = async (localId, date) => {
-    const data =await Pedido.findOne({where: {localId, date}})
+const getPedidoByLocal = async (localId, date, pedidoId) => {
+    const data =await Pedido.findOne({
+        where: {localId, date},
+    })
     
     return data
 }
