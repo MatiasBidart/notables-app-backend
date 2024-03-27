@@ -42,6 +42,19 @@ const getPedidoByLocal = (req,res) =>{
         description: 'Is mandatory to have the following data:{localId, date}'})
     }
 }
+const getPedidoDataByCategory = (req,res) =>{
+    const categoryId = req.params.categoryId
+    const id = req.params.id
+    
+    if(id && categoryId){
+        pedidoControllers.getPedidoDataByCategory(categoryId, id)
+        .then(data=>{res.status(200).json(data)})
+        .catch(err=>{res.status(404).json({message:err.message})})
+    } else {
+        res.status(400).json({message:'Error: Missing Data',
+        description: 'Is mandatory to have the following data:{categoryId, id}'})
+    }
+}
 const patchPedido =(req,res)=>{
     const id = req.params.id
     const {localId, isCompleted, startedAt, isDelevoped} = req.body
@@ -105,6 +118,7 @@ module.exports = {
     getAllPedidos,
     getPedidoById,
     getPedidoByLocal,
+    getPedidoDataByCategory,
     patchPedido,
     deletePedido,
     createPedido

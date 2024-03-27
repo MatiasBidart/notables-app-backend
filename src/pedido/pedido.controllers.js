@@ -1,6 +1,7 @@
 const Pedido = require('../models/pedido.models');
 const List = require('../models/list.models');
 const Product = require('../models/product.models');
+const CategoriesProducts = require('../models/categoriesProducts.models')
 const uuid = require('uuid');
 
 const getAllPedidos = async (offset, limit) => {
@@ -40,9 +41,45 @@ const getPedidoById = async (id) => {
     })
     return data
 }
-const getPedidoByLocal = async (localId, date, pedidoId) => {
+const getPedidoByLocal = async (localId, date) => {
     const data =await Pedido.findOne({
         where: {localId, date},
+    })
+    
+    return data
+}
+const getPedidoDataByCategory = async (categoryId, id) => {
+    const data =await Pedido.findOne({
+        where: {id},
+        attributes: {exclude: ['createdAt', 'updatedAt']},
+        include: [
+            {
+                model: List,
+                as: 'lists',
+                where: {pedidoId: id},
+                attributes: [
+                    'quantityAsked',
+                    'quantityDelivered'
+                ],
+                include: [{
+                    model: Product,
+                    attributes: [
+                        "id",
+                        "name",
+                        "stock",
+                        "img"
+                    ],
+                    where: {},
+                    include: [{
+                        model: CategoriesProducts,
+                        where: {categoryId: categoryId},
+                        attributes: [
+                            'categoryId',
+                        ],
+                    }]
+                }]
+            },
+        ]
     })
     
     return data
@@ -72,6 +109,7 @@ module.exports = {
     getAllPedidos,
     getPedidoById,
     getPedidoByLocal,
+    getPedidoDataByCategory,
     createPedido,
     updatePedido,
     deletePedido

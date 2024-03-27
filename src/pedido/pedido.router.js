@@ -10,5 +10,7 @@ router.route('/')
     .get(pedidoServices.getPedidoById)
     .patch(pedidoServices.patchPedido)
     .delete(pedidoServices.deletePedido)
+    router.route('/:id/category/:categoryId')
+    .get(pedidoServices.getPedidoDataByCategory)
     
 module.exports = router
