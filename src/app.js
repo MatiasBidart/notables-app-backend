@@ -9,6 +9,7 @@ const pedidoRouter = require('./pedido/pedido.router');
 const localRouter = require('./local/local.router');
 const listRouter = require('./list/list.router');
 const categoriesProductsRouter = require('./categoriesProducts/categoriesProducts.router');
+const multerRouter = require('./utils/multer.upload/upload.route')
 const initModels = require('./models/initModels');
 
 
@@ -43,6 +44,8 @@ app.use('/api/v1/pedido', pedidoRouter)
 app.use('/api/v1/locals', localRouter)
 app.use('/api/v1/list', listRouter)
 app.use('/api/v1/categories_products/', categoriesProductsRouter)
+app.use('/api/v1/categories_products/', categoriesProductsRouter)
+app.use('/api/v1/upload', multerRouter)
 
 
 
