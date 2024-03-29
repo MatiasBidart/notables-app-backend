@@ -46,7 +46,7 @@ app.use('/api/v1/list', listRouter)
 app.use('/api/v1/categories_products/', categoriesProductsRouter)
 app.use('/api/v1/categories_products/', categoriesProductsRouter)
 app.use('/api/v1/upload', multerRouter)
-
+app.use('/api/v1/assets/images', express.static('assets/images')); //middleware para servir archivos estáticos desde la carpeta donde se almacenan las imágenes
 
 
 
