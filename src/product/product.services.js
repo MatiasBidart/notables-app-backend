@@ -17,6 +17,12 @@ const getProductByName = (req,res) =>{
     .then(data=>{res.status(200).json(data)})
     .catch(err=>{res.status(404).json({message:err.message})})
 }
+const getProductByCategoryId = (req, res) =>{
+    const categoryId=req.params.categoryId
+    productControllers.getProductByCategoryId(categoryId)
+    .then(data=>{res.status(200).json(data)})
+    .catch(err=>{res.status(400).json({message: err.message})})
+}
 const patchProduct =(req,res)=>{
     const id=req.params.id
     const {name, unity, pack, mvq, img, categoryId} = req.body
@@ -75,6 +81,7 @@ module.exports= {
     getAllProducts,
     getProductById,
     getProductByName,
+    getProductByCategoryId,
     patchProduct,
     deleteProduct,
     createProduct

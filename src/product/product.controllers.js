@@ -38,6 +38,26 @@ const getProductByName = async (name) => {
     const data =await Product.findOne({where: {name : name}})
     return data
 }
+const getProductByCategoryId = async (categoryId) => {
+    const data =await Product.findAll({
+        attributes: {exclude: ['createdAt', 'updatedAt']},
+        where:{},
+        include: [
+        {
+            model: CategoriesProducts,
+            as: 'categories_products',
+            attributes: {exclude: ['id', 'productId']},
+            where: {categoryId: categoryId},
+            include: [
+                {
+                    model: Categories,
+                    attributes: ["name"]
+                }
+            ]
+        }
+    ]})
+    return data
+}
 const createProduct = async (data) => {
     const newProduct = await Product.create(
         {
@@ -62,6 +82,7 @@ module.exports = {
     getAllProducts,
     getProductById,
     getProductByName,
+    getProductByCategoryId,
     createProduct,
     updateProduct,
     deleteProduct
