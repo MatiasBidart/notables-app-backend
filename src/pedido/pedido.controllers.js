@@ -85,10 +85,17 @@ const getPedidoDataByCategory = async (categoryId, id) => {
     return data
 }
 const createPedido = async (data) => {
+    let date;
+    if (data.date) {
+        date = new Date(data.date);
+    } else {
+        date = new Date();
+    }
+
     const newPedido ={
             id: uuid.v4(),
             localId: data.localId,
-            date: new Date(),
+            date: date,
             startedAt: data.startedAt,
         }
     const result = await Pedido.create(newPedido)
