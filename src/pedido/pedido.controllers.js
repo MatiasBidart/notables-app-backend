@@ -87,7 +87,7 @@ const getPedidoDataByCategory = async (categoryId, id) => {
 const createPedido = async (data) => {
     let date;
     if (data.date) {
-        date = new Date(data.date);
+        date = data.date;
     } else {
         date = new Date();
     }
