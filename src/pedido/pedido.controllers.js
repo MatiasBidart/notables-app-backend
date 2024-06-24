@@ -42,11 +42,34 @@ const getPedidoById = async (id) => {
     return data
 }
 const getPedidoByLocal = async (localId, date) => {
-    const data =await Pedido.findOne({
-        where: {localId, date},
-    })
-    
-    return data
+    try {
+        const pedido = await Pedido.findOne({
+            where: {
+                localId: localId,
+                date: date
+            }
+        });
+
+        if (!pedido) {
+            return {
+                success: false,
+                message: 'Pedido no encontrado',
+                data: null
+            };
+        }
+
+        return {
+            success: true,
+            message: 'Pedido encontrado',
+            data: pedido
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: 'Error al buscar el pedido',
+            error: error.message
+        };
+    }
 }
 const getPedidoDataByCategory = async (categoryId, id) => {
     const data =await Pedido.findOne({

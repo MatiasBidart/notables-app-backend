@@ -35,7 +35,7 @@ const getPedidoByLocal = (req,res) =>{
     
     if(localId && date){
         pedidoControllers.getPedidoByLocal(localId, date)
-        .then(data=>{res.status(200).json(data)})
+        .then(data=>{res.status(200).json({data})})
         .catch(err=>{res.status(404).json({message:err.message})})
     } else {
         res.status(400).json({message:'Error: Missing Data',
