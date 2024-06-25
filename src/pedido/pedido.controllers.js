@@ -59,9 +59,7 @@ const getPedidoByLocal = async (localId, date) => {
         }
 
         return {
-            success: true,
-            message: 'Pedido encontrado',
-            data: pedido
+            pedido
         };
     } catch (error) {
         return {
